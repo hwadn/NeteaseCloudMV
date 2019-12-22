@@ -5,4 +5,5 @@
 - Vue
 
 ## 流程
-### 第1步 [使用webpack搭建Vue项目工程](https://github.com/IamHuadong/NeteaseCloudMV/issues/1)  
+### 1 [天气组件编写](https://github.com/IamHuadong/NeteaseCloudMV/issues/1)  
+### 2 [登录注册组件编写](https://github.com/IamHuadong/NeteaseCloudMV/issues/2) 
