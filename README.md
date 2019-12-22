@@ -7,3 +7,4 @@
 ## 实现步骤
 ### 1 [天气组件](https://github.com/IamHuadong/NeteaseCloudMV/issues/1)  
 ### 2 [登录注册组件](https://github.com/IamHuadong/NeteaseCloudMV/issues/2) 
+### 3 [轮播图组件](https://github.com/IamHuadong/NeteaseCloudMV/issues/3) 
