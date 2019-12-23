@@ -18,7 +18,7 @@
 				<IdentifyCode ref="verifyCode" @update="msgUpdate"></IdentifyCode>
 				<div class="warn">{{verify.msg}}</div>
 			</div>
-			<div class="register-btn" @click="submit">注册</div>
+			<div class="register-btn"  v-debounce:click="submit">注册</div>
 		</div>
 	</div>
 </template>

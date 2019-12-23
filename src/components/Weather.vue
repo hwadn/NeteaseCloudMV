@@ -26,7 +26,7 @@
 				// 天气状况
 				this.state = weatherMsg.data.weather.weather;
 			},err=>{
-				window.alert(err);
+				window.console.log(err);
 			});
 		},
 		computed: {

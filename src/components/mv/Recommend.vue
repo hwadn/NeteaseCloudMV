@@ -23,7 +23,6 @@
 	import myAjax from '../../api/ajax.js'
 	import deepCopy from '../../api/deepCopy.js'
 	import Vue from 'vue'
-	import {debounce} from '../../api/debounce.js'
 	import urls from '../../api/urls.js'
 	export default{
 		data: ()=>{
@@ -210,16 +209,17 @@
 		cursor: pointer;
 	}
 	.description .name{
-		font-size: 1.5rem;
+		margin-top: 1.5rem;
+		font-size: 1.2rem;
 		padding: 0 1rem;
 		text-align: center;
 		color: white;
 	}
 	.description .artists{
 		margin-top: 1rem;
-		padding: 0 1rem;
-		font-size: 1rem;
-		line-height: 1rem;
+		padding: 0 0.8rem;
+		font-size: 0.8rem;
+		line-height: 0.8rem;
 		color: white;
 		text-align: center;
 	}
@@ -227,7 +227,7 @@
 		position: absolute;
 		left: 50%;
 		transform: translateX(-50%);
-		bottom: 20px;
+		bottom: 0.5rem;
 		text-align: center;
 		user-select: none;
 	}

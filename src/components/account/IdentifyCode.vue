@@ -1,11 +1,12 @@
 <template>
 	<div class="identifyCode">
 		<input type="text" placeholder="验证码" v-model="inputValue" @input="updateMsg">
-		<img v-bind:src="imgSrc" alt="点击刷新" @click="refresh">
+		<img v-bind:src="imgSrc" alt="点击刷新" v-debounce:click="refresh">
 	</div>
 </template>
 <script>
 	import myAjax from '../../api/ajax.js'
+	import urls from '../../api/urls.js'
 	export default{
 		data: ()=>{
 			return {
@@ -26,7 +27,7 @@
 			},
 			// 验证码刷新
 			refresh(){
-				const url = "http://hn216.api.yesapi.cn/?s=App.Captcha.Create&app_key=65C1298539FD9D8D9E6C2908F1AC7231&return_format=data";
+				const url = `${urls.verifyImgUrl}&return_format=data`;
 				let that = this;
 				// 图片刷新
 				myAjax(url).then(res=>{
@@ -43,7 +44,7 @@
 				let that = this;
 				// 校验请求
 				return new Promise((resolve,reject)=>{
-					let url = `http://hn216.api.yesapi.cn/?s=App.Captcha.Verify&app_key=65C1298539FD9D8D9E6C2908F1AC7231&captcha_id=${this.captcha_id}&captcha_code=${this.inputValue}`;
+					let url = `${urls.verifyUrl}&captcha_id=${this.captcha_id}&captcha_code=${this.inputValue}`;
 					// 开始校验
 					myAjax(url).then(res=>{
 						let obj = JSON.parse(res);
@@ -83,5 +84,8 @@
 		float: right;
 		width: 40%;
 		height: 100%;
+	}
+	img:hover{
+		cursor: pointer;
 	}
 </style>

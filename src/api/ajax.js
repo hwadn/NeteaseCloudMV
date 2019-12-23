@@ -6,6 +6,8 @@ function myAjax(url){
 			if(xhr.readyState == 4){
 				if(xhr.status == 200){
 					resolve(xhr.responseText);
+				}else{
+					reject('ajax请求失败: status=' + xhr.status);
 				}
 			}
 		}

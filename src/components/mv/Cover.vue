@@ -18,14 +18,14 @@
 	import DurationIcon from '../multiplex/DurationIcon.vue'
 	export default{
 		props: {
-			imgUrl: String,
-			playCount: String,
+			imgUrl: '',
+			playCount: Number,
 			duration: String
 		},
 		components: {
 			PlayIcon,
 			DurationIcon
-		}
+		},
 	}
 </script>
 <style scoped>

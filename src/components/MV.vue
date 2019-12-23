@@ -14,6 +14,9 @@
 	}
 </script>
 <style scoped>
+	.mv{
+		width: 100%;
+	}
 	.bar{
 		height: 2.5rem;
 		line-height: 2.5rem;
@@ -34,7 +37,5 @@
 	}
 	.show{
 		padding: 5px 0;
-		/*background-color: #33ccff;*/
-		/*background-color: */
 	}
 </style>

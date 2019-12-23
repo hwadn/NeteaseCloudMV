@@ -14,8 +14,8 @@
 				<IdentifyCode ref="verifyCode" @update="msgUpdate"></IdentifyCode>
 				<div class="warn">{{verify.msg}}</div>
 			</div>
-			<div class="login-btn" @click="submit">登录</div>
-			<div class="item">没有账号 <span class="to-register" @click="toRegister">立即注册</span></div>
+			<div class="login-btn" v-debounce:click="submit">登录</div>
+			<div class="item">没有账号 <span class="to-register"  v-debounce:click="toRegister">立即注册</span></div>
 		</div>
 	</div>
 </template>

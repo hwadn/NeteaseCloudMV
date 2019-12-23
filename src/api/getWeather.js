@@ -15,8 +15,6 @@ function getIpCity(){
 				// 去除市这个字
 				city = city.substring(0, city.length-1);
 				resolve(city);
-			}else{
-				reject(status);
 			}
 		},err=>{
 			reject(err);
