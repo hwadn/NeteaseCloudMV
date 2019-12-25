@@ -11,7 +11,6 @@
 </template>
 <script>
 	import VideoPlay from './mv/VideoPlay.vue'
-	import DragZoom from './multiplex/DragZoom.vue'
 
 	export default{
 		components: {
