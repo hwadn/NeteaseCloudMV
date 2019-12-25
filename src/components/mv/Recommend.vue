@@ -1,6 +1,6 @@
 <template>
 	<div class='recommend'>
-		<div class="carousel">
+		<div class="carousel" v-on:click="play">
 			<div v-for="(mv,index) in mvs" :key="index">
 				<transition name="move">
 					<img v-bind:src="mv.picUrl" v-show="isShows[index]">
@@ -10,12 +10,12 @@
 		<div class="description">
 			<div class="name">{{current.name}}</div>
 			<div class="artists">{{current.artists}}</div>
-			<div class="clicks" @click.stop="goMV">
-				<span :class="{active:isShows[0]}">1</span>
-				<span :class="{active:isShows[1]}">2</span>
-				<span :class="{active:isShows[2]}">3</span>
-				<span :class="{active:isShows[3]}">4</span>
-			</div>
+		</div>
+		<div class="clicks" @click.stop="goMV">
+			<span :class="{active:isShows[0]}">1</span>
+			<span :class="{active:isShows[1]}">2</span>
+			<span :class="{active:isShows[2]}">3</span>
+			<span :class="{active:isShows[3]}">4</span>
 		</div>
 	</div>
 </template>
@@ -24,12 +24,16 @@
 	import deepCopy from '../../api/deepCopy.js'
 	import Vue from 'vue'
 	import urls from '../../api/urls.js'
+	import eventBus from '../../api/eventBus.js'
+
 	export default{
 		data: ()=>{
 			return {
 				isShows: [false, false, false, true], // 循环左移做轮播图
 				mvs: [],
 				current: {
+					id: '',
+					cover: '',
 					name: '',
 					artists: '',
 				},
@@ -75,6 +79,8 @@
 			},
 			// 设置当前mv信息
 			setCurrent(n){
+				this.current.id = this.mvs[n].id;
+				this.current.cover = this.mvs[n].picUrl;
 				this.current.name = this.mvs[n].name;
 				this.current.artists = this.artists2str(this.mvs[n].artists);
 			},
@@ -105,6 +111,11 @@
 					// 设置当前mv信息
 					this.setCurrent(this.isShows.indexOf(true));
 				},wait);
+			},
+			// 去播放
+			play(){
+				// 传给父组件去播放
+				eventBus.$emit('play',this.current.id,this.current.cover);
 			},
 		},
 		created(){
@@ -188,7 +199,6 @@
 		width: 100%;
 		height: 100%;
 		background-color: brown;
-		position: ab;
 		overflow: hidden;
 	}
 	.carousel img{
@@ -197,39 +207,37 @@
 		width: 100%;
 		height: 100%;
 	}
+	.carousel img:hover{
+		cursor: pointer;
+	}
 	.description{
 		position: absolute;
 		font-size: 1rem;
-		width: 100%;
-		height: 100%;
 		box-sizing: border-box;
-		padding-top: 2rem;
-	}
-	.description:hover{
-		cursor: pointer;
-	}
-	.description .name{
-		margin-top: 1.5rem;
-		font-size: 1.2rem;
-		padding: 0 1rem;
+		margin-top: 2rem;
+		background-color: rgba(0,0,0,0.3);
+		left: 50%;
+		transform: translateX(-50%);
 		text-align: center;
 		color: white;
 	}
+	.description .name{
+		font-size: 1.2rem;
+		padding: 0 1rem;
+	}
 	.description .artists{
-		margin-top: 1rem;
 		padding: 0 0.8rem;
 		font-size: 0.8rem;
 		line-height: 0.8rem;
-		color: white;
-		text-align: center;
 	}
 	.clicks{
 		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
-		bottom: 0.5rem;
+		bottom: 10px;
 		text-align: center;
 		user-select: none;
+		font-size: 1rem;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 	.clicks span{
 		color: white;

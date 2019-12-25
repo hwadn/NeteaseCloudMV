@@ -1,5 +1,6 @@
 <template>
 	<div class="mv">
+		<VideoPlay></VideoPlay>
 		<div class="bar">
 			<router-link to="/all">全部</router-link>
 			<router-link to="/board">排行</router-link>
@@ -9,13 +10,44 @@
 	</div>
 </template>
 <script>
-	export default{
+	import VideoPlay from './mv/VideoPlay.vue'
+	import DragZoom from './multiplex/DragZoom.vue'
 
+	export default{
+		components: {
+			VideoPlay,
+		},
 	}
 </script>
 <style scoped>
+	/*屏幕尺寸适应*/
+	@media (max-width: 800px) {
+		.video-play{
+			width: 70% !important;
+			left: 0 !important;
+		}
+	}
+	@media (max-width: 600px) {
+		.video-play{
+			width: 100% !important;
+			left: 0 !important;
+		}
+	}
+	.video-play{
+		position: fixed;
+		width: 30%;
+		left: 20px;
+		top: 50px;
+		z-index: 10;
+	}
 	.mv{
 		width: 100%;
+	}
+	.drag-zoom{
+		position: fixed;
+		left: 100px;
+		top: 50px;
+		z-index: 100;
 	}
 	.bar{
 		height: 2.5rem;
@@ -36,6 +68,6 @@
 		font-size: 1.125rem;
 	}
 	.show{
-		padding: 5px 0;
+		user-select: none;
 	}
 </style>

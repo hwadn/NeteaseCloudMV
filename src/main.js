@@ -13,7 +13,7 @@ Vue.directive('debounce',{
 		el.addEventListener(event, debounce(fn, 100));
 	}
 });
-// 节流
+// 节流，默认200ms。200ms后执行
 Vue.directive('throttle',{
 	bind: function(el, binding){
 		let fn = binding.value;

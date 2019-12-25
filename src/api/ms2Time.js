@@ -1,7 +1,7 @@
-// 计算时长，毫秒转分钟等
-function ms2Time(n){
+// 计算时长，以秒为准转分钟等，默认ms
+function ms2Time(n, times){
 	(typeof n == 'number') || (n = Number(n));
-	let seconds = Math.ceil(n / 1000);
+	let seconds = Math.ceil(n / (times || 1000));
 	let minutes = Math.floor(seconds / 60);
 	seconds = seconds % 60;
 	if(minutes >= 60){

@@ -1,6 +1,6 @@
 <template>
 	<div class="lists">
-		<ul id="mvs">
+		<ul id="mvs" @click="play">
 			<li v-for="(mv, index) in currentMvs" :key="index">
 				<Cover :img-url="mv.cover" :play-count="mv.playCount" :duration="mv.duration"></Cover>
 				<div class="name">
@@ -25,6 +25,7 @@
 	import {throttle, debounce} from '../../api/debounce.js'
 	import Vue from 'vue'
 	import artists2Str from '../../api/artists2str.js'
+	import eventBus from '../../api/eventBus.js'
 
 	export default {
 		components: {
@@ -205,6 +206,23 @@
 					this.currentPage = newPage;
 				}
 			},
+			// 去播放视频
+			play(event){
+				let node = event.target;
+				// 事件委托
+				if(node.nodeName == 'LI'){
+					let ul = node.parentNode;
+					// 获取所以的li集合
+					let lis = ul.children;
+					// 获取当前点击li在ul中的位置坐标
+					let index = Array.from(lis).indexOf(node)
+					// 计算当前li的id和cover
+					let id = this.currentMvs[index].id;
+					let cover = this.currentMvs[index].realCover;
+					// 去播放
+					eventBus.$emit('play',id, cover);
+				}
+			},
 		}
 	}
 </script>
@@ -230,8 +248,12 @@
 	li:nth-child(odd){
 		padding-right: 5px;
 	}
-	li img{
-		max-width: 100%;
+	li:hover{
+		cursor: pointer;
+	}
+	li .cover{
+		/*禁止事件*/
+		pointer-events: none;
 	}
 	li .name{
 		margin-top: 0.3rem;
@@ -242,6 +264,8 @@
 		white-space:nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		/*禁止事件*/
+		pointer-events: none;
 	}
 	li .artists{
 		color: gray;
@@ -252,6 +276,8 @@
 		white-space:nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		/*禁止事件*/
+		pointer-events: none;
 	}
 	.lists .page-selector{
 		padding: 5px;

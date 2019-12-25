@@ -9,6 +9,9 @@
 		width: 32px;
 		height: 32px;
 	}
+	.cross:hover{
+		cursor: pointer;
+	}
 	.cross:before, .cross:after{
 		content: '';
 		position: absolute;
@@ -19,8 +22,8 @@
 		left: 0;
 		top: 15px;
 	}
-	.cross:hover:before, .cross:hover:after{
-		outline: yellow solid 1px;
+	.cross.white:before, .cross.white:after{
+		background-color: white;
 	}
 	.cross:before{
 		transform: rotate(45deg);

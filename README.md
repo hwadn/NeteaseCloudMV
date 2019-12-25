@@ -25,4 +25,5 @@ npm run build
 ### 1 [天气组件](https://github.com/IamHuadong/NeteaseCloudMV/issues/1)  
 ### 2 [登录注册组件](https://github.com/IamHuadong/NeteaseCloudMV/issues/2) 
 ### 3 [轮播图组件](https://github.com/IamHuadong/NeteaseCloudMV/issues/3) 
-### 3 [mv列表懒加载组件](https://github.com/IamHuadong/NeteaseCloudMV/issues/4) 
+### 4 [mv列表懒加载组件](https://github.com/IamHuadong/NeteaseCloudMV/issues/4) 
+### 5 [视频播放组件组件](https://github.com/IamHuadong/NeteaseCloudMV/issues/5) 

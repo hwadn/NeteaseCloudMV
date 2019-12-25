@@ -1,4 +1,4 @@
-// ajax结合，异步请求
+// ajax结合，异步请求，做链式调用
 function myAjax(url){
 	return new Promise((resolve,reject)=>{
 		let xhr = new XMLHttpRequest();
@@ -6,8 +6,6 @@ function myAjax(url){
 			if(xhr.readyState == 4){
 				if(xhr.status == 200){
 					resolve(xhr.responseText);
-				}else{
-					reject('ajax请求失败: status=' + xhr.status);
 				}
 			}
 		}
