@@ -22,7 +22,7 @@
 				currentPoster: '',
 				canplay: false,
 				error: '',
-				isShow: true,
+				isShow: false,
 			};
 		},
 		components: {
@@ -70,7 +70,7 @@
 			// 获取视频地址并设置
 			setUrlById(id){
 				let url = `${urls.nodeUrl}/mv/url?id=${id}`;
-				myAjax(url).then((str)=>{
+				myAjax.get(url).then((str)=>{
 					let obj = JSON.parse(str);
 					if(obj.code == 200){
 						this.currentUrl = obj.data.url;

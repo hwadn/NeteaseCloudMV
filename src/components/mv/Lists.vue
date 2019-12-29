@@ -51,7 +51,7 @@
 		data: ()=>{
 			return {
 				// mv总数量，分组用到
-				total: 100,
+				total: 0,
 				// 当前页
 				currentPage: 1,
 				// 存放已加载的mv信息
@@ -122,7 +122,7 @@
 				// 偏移量（当页mv在总mv中的位置）=（当前页数-1）*单页个数
 				let offset = (this.currentPage - 1) * singlePageNumber;
 				const mvUrl = `${urls.nodeUrl}/mv/all?limit=${singlePageNumber}&offset=${offset}`;
-				MyAjax(mvUrl).then(mvsStr=>{
+				MyAjax.get(mvUrl).then(mvsStr=>{
 					// 解析
 					let mvsObj = JSON.parse(mvsStr);
 					let mvs = mvsObj.data;

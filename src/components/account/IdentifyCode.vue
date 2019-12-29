@@ -30,7 +30,7 @@
 				const url = `${urls.verifyImgUrl}&return_format=data`;
 				let that = this;
 				// 图片刷新
-				myAjax(url).then(res=>{
+				myAjax.get(url).then(res=>{
 					let obj = JSON.parse(res);
 					that.captcha_id = obj.data.captcha_id;
 					let base64 = obj.data.captcha_img;
@@ -46,7 +46,7 @@
 				return new Promise((resolve,reject)=>{
 					let url = `${urls.verifyUrl}&captcha_id=${this.captcha_id}&captcha_code=${this.inputValue}`;
 					// 开始校验
-					myAjax(url).then(res=>{
+					myAjax.get(url).then(res=>{
 						let obj = JSON.parse(res);
 						let answer = obj.data.err_code;
 						let msg = ''; // 验证信息

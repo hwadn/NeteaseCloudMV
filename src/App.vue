@@ -3,8 +3,7 @@
 		<div class='head'>
 			<Weather></Weather>
 			<h3 class="title">网易云MV在线交流</h3>
-			<span class="account login-click" @click="isLogin = true;isRegister=false">登录</span>
-			<span class="account register-click"  @click="isLogin = false;isRegister=true">注册</span>
+			<account-info></account-info>
 		</div>
 		<div class="body">
 			<div class='others'>空白</div>
@@ -14,28 +13,21 @@
 		<div class='footer'>
 			联系邮箱：chd1994@foxmail.com
 		</div>
-		<Login v-if="isLogin" @closeCur="isLogin=false"></Login>
-		<Register v-if="isRegister" @closeCur="isRegister=false"></Register>
 	</div>
 </template>
 <script>
 	import Weather from './components/Weather.vue'
-	import Login from './components/account/Login.vue'
-	import Register from './components/account/Register.vue'
 	import MV from './components/Mv.vue'
+	import AccountInfo from './components/account/AccountInfo.vue'
 	export default {
 		data:()=>{
 			return {
-				// 登录显示
-				isLogin: false,
-				// 注册显示
-				isRegister: false,
+
 			}
 		},
 		components:{
 			Weather,
-			Login,
-			Register,
+			AccountInfo,
 			MV,
 		}
 	};
@@ -48,8 +40,8 @@
 		}
 	}
 	@media (max-width: 600px) {
-		.weather, .account, .others, .chat{
-			display: none;
+		.weather, .account-info, .others, .chat{
+			display: none !important;
 		}
 	}
 	/*头部*/
@@ -67,19 +59,9 @@
 	.head .title{
 		display: inline;
 	}
-	.head .account{
+	.head .account-info{
 		position: absolute;
-		text-decoration: underline;
-	}
-	.head .account:hover{
-		color: rgb(170, 255, 255);
-		cursor: pointer;
-	}
-	.head .login-click{
-		right: 3.75rem;
-	}
-	.head .register-click{
-		right: 0.7rem;
+		right: 1rem;
 	}
 	/*主体*/
 	.body{
@@ -91,7 +73,7 @@
 		flex: 1;
 		margin-left: 0.625rem;
 		margin-right: 1.25rem;
-		/*height: 300px;*/
+		height: 400px;
 		background-color: white;
 	}
 	.body .mv{
@@ -103,6 +85,7 @@
 		flex: 1;
 		margin-left: 1.25rem;
 		margin-right: 0.625rem;
+		height: 400px;
 		background-color: white;
 	}
 	/*脚部*/

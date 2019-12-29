@@ -5,7 +5,7 @@ import urls from './urls.js'
 function getIpCity(){
 	return new Promise((resolve,reject)=>{
 		const url = urls.ipCityUrl;
-		myAjax(url).then(str=>{
+		myAjax.get(url).then(str=>{
 			let obj = JSON.parse(str);
 			// 状态码
 			let status = obj.ret;
@@ -25,7 +25,7 @@ function getWeather(city){
 	let ipCity = city;
 	return new Promise((resolve,reject)=>{
 		const url = `${urls.cityWeatherUrl}${ipCity}`;
-		myAjax(url).then(str=>{
+		myAjax.get(url).then(str=>{
 			let weatherMsg = JSON.parse(str);
 			// 状态码
 			let status = weatherMsg.ret;

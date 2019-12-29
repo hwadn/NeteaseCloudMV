@@ -32,15 +32,15 @@
 			left: 0 !important;
 		}
 	}
+	.mv{
+		width: 100%;
+	}
 	.video-play{
 		position: fixed;
 		width: 30%;
 		left: 20px;
 		top: 50px;
 		z-index: 10;
-	}
-	.mv{
-		width: 100%;
 	}
 	.drag-zoom{
 		position: fixed;

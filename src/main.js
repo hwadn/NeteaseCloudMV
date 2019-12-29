@@ -25,5 +25,11 @@ Vue.directive('throttle',{
 
 new Vue({
 	router,
+	data: {
+		// 登录状态
+		loged: false,
+		// 用户名
+		username: '',
+	},
 	render: h => h(App)
 }).$mount("#app");

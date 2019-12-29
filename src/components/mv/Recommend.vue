@@ -124,7 +124,7 @@
 			// 显示初始化
 			this.mvs[0].isShow = true;
 			let that = this;
-			myAjax(`${urls.nodeUrl}/personalized/mv`).then(value=>{
+			myAjax.get(`${urls.nodeUrl}/personalized/mv`).then(value=>{
 				let dataObj = JSON.parse(value);
 				if(dataObj.code == 200){
 					// 初始化数据
