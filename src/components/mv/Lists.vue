@@ -165,7 +165,9 @@
 			// 懒加载，计算图片列表元素li顶部距浏览器底部距离计算，达到视口位置就替换
 			lazyLoad(){
 				// ul的子元素
-				let lis = document.getElementById('mvs').children;
+				let mvs = document.getElementById('mvs');
+				if(!mvs)return;
+				let lis = mvs.children;
 				// 找到未加载的图片下标数组
 				let unLoadArr = this.findUnload();
 				// 遍历符合位置条件的，替换url进行加载

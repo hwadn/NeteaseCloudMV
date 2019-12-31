@@ -17,6 +17,7 @@
 	import Register from './Register.vue'
 	import myAjax from '../../api/ajax.js'
 	import urls from '../../api/urls.js'
+	import eventBus from '../../api/eventBus.js'
 	export default {
 		components: {
 			Login,
@@ -30,13 +31,17 @@
 				showRegister: false,
 			};
 		},
-		created(){
+		mounted(){
 			// 校验cookie是否存在或过期，否则登录
 			myAjax.get(`${urls.nodeUrl}/isLogin`).then(value=>{
 				if(value){
 					this.$root.$data.loged = true;
 					this.$root.$data.username = value;
 				}
+			});
+			// 监听登录事件
+			eventBus.$on('showLogin', ()=>{
+				this.showLogin = true;
 			});
 		},
 		methods:{
@@ -64,6 +69,7 @@
 	.account-info .buttons{
 	}
 	.account-info .btn{
+		text-decoration: underline;
 		font-size: 1rem;
 		padding: 5px;
 		color: white;
@@ -107,9 +113,11 @@
 	}
 	.info:hover .username{
 		background-color: gray;
+		border-radius: 5px 5px 0 0;
 	}
 	.info:hover .logout{
 		display: block;
+		border-radius: 0 0 5px 5px;
 	}
 	.logout:hover{
 		background-color: rgb(0,100,200);

@@ -16,8 +16,54 @@ app.use(webpackDevMiddleware(compiler, {
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!\n');
 });
+/*******************************************************************************/
+// 聊天室模块
+/*******************************************************************************/
+// websocket
+var ws = require("nodejs-websocket");
+var server = ws.createServer(function (conn) {
+	// 接收消息事件
+	conn.on("text", function (str) {
+		let msg = JSON.parse(str);
+		if(msg.type == 'msg'){
+			broadcast(server, str);
+		}else{
+			console.log('格式错误');
+		}
+	});
+	// 断开
+	conn.on("close", function (code, reason) {
+		// 广播连接数
+		broadcastVisit(server);
+	})
+}).listen(8001);
+// 新连接
+server.on("connection", function(){
+	broadcastVisit(server);
+});
+// 广播消息
+function broadcast(server, msg) {
+	server.connections.forEach(function (conn) {
+		conn.sendText(msg)
+	});
+}
+// 广播实时访问数
+function broadcastVisit(server) {
+	// 发送实时访问数
+	let visitNumber = server.connections.length;
+	let resText = {
+		type: 'visit',
+		number: visitNumber
+	};
+	let msg = JSON.stringify(resText);
+	server.connections.forEach(function (conn) {
+		conn.sendText(msg);
+	});
+}
 
-/*****************************************************************************/
+/************************************************************************************/
+// 登录模块
+/************************************************************************************/
 // post主体解析模块
 var bodyParser = require('body-parser');
 var multer = require('multer'); // v1.0.5
@@ -60,6 +106,7 @@ app.post('/myregister', upload.array(), function(req, res){
 			let token = createToken(body.username);
 			res.set('Set-Cookie', `token=${token};Max-Age=86400;HttpOnly`);
 		}
+		// 发送
 		res.send(value);
 	});
 });
@@ -76,6 +123,7 @@ app.post('/mylogin', upload.array(), function(req, res){
 			// 设置令牌token。cookie一天.IE8以下不支持Max0Age。httpOnly
 			let token = createToken(username);
 			res.set('Set-Cookie', `token=${token};Max-Age=86400;HttpOnly`);
+			// 发送
 			res.send('{"code":1}');
 		}else{
 			// 用户存在，密码不正确，0表示
@@ -89,12 +137,13 @@ app.get('/isLogin', function(req, res){
 	// 校验token
 	let result = verifyToken(token);
 	if(result != false){
+		// 发送
 		res.send(result.username);
 	}else{
 		res.status(401).send('No Login');
 	}
 });
-// 登录
+// 登出
 app.post('/logout', function(req, res){
 	let token = req.cookies.token;
 	// 清除cookie

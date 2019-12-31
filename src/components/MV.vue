@@ -2,9 +2,11 @@
 	<div class="mv">
 		<VideoPlay></VideoPlay>
 		<div class="bar">
-			<router-link to="/all">全部</router-link>
-			<router-link to="/board">排行</router-link>
-			<router-link to="/new">最新</router-link>
+			<router-link to="all">全部</router-link>
+			<router-link to="board">排行</router-link>
+			<router-link to="new">最新</router-link>
+			<router-link to="record">留言</router-link>
+			<router-link to="links">GitHub</router-link>
 		</div>
 		<router-view class="show"></router-view>
 	</div>
@@ -31,9 +33,6 @@
 			width: 100% !important;
 			left: 0 !important;
 		}
-	}
-	.mv{
-		width: 100%;
 	}
 	.video-play{
 		position: fixed;

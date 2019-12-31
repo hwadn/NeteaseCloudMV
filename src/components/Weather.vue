@@ -40,6 +40,9 @@
 	};
 </script>
 <style scoped>
+	.weather span{
+		display: inline;
+	}
 	.state{
 		padding: 0 5px;
 		border-radius: 8px;

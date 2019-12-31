@@ -1,6 +1,6 @@
 <template>
 	<div>
-		最新
+		待做。。。
 	</div>
 </template>
 <script>

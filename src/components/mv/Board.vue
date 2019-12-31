@@ -1,6 +1,6 @@
 <template>
 	<div>
-		排行
+		待做。。。
 	</div>
 </template>
 <script>

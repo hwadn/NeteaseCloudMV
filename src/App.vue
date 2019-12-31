@@ -6,9 +6,8 @@
 			<account-info></account-info>
 		</div>
 		<div class="body">
-			<div class='others'>空白</div>
 			<MV></MV>
-			<div class='chat'>在线交流</div>
+			<Chat></Chat>
 		</div>
 		<div class='footer'>
 			联系邮箱：chd1994@foxmail.com
@@ -17,8 +16,9 @@
 </template>
 <script>
 	import Weather from './components/Weather.vue'
-	import MV from './components/Mv.vue'
 	import AccountInfo from './components/account/AccountInfo.vue'
+	import MV from './components/MV.vue'
+	import Chat from './components/Chat.vue'
 	export default {
 		data:()=>{
 			return {
@@ -29,19 +29,18 @@
 			Weather,
 			AccountInfo,
 			MV,
+			Chat
 		}
 	};
 </script>
 <style>
 	/*屏幕尺寸适应*/
-	@media (max-width: 800px) {
-		.weather, .others{
-			display: none;
-		}
-	}
 	@media (max-width: 600px) {
-		.weather, .account-info, .others, .chat{
+		.account-info, .chat{
 			display: none !important;
+		}
+		.mv{
+			width: 100% !important;
 		}
 	}
 	/*头部*/
@@ -54,6 +53,7 @@
 	}
 	.head .weather{
 		position: absolute;
+		left: 5px;
 		padding: 0 5px;
 	}
 	.head .title{
@@ -62,36 +62,30 @@
 	.head .account-info{
 		position: absolute;
 		right: 1rem;
+		z-index: 30;
 	}
 	/*主体*/
 	.body{
-		display: flex;
-		padding: 1.2rem 0;
+		padding: 1rem 0.5rem;
 		background-color: rgb(221,221,221);
 	}
-	.body .others{
-		flex: 1;
-		margin-left: 0.625rem;
-		margin-right: 1.25rem;
-		height: 400px;
-		background-color: white;
-	}
 	.body .mv{
-		flex: 3;
+		width: 65%;
+		display: inline-block;
 		background-color: white;
-		min-height: 37.5rem;
+		min-height: 540px;
 	}
 	.body .chat{
-		flex: 1;
-		margin-left: 1.25rem;
-		margin-right: 0.625rem;
-		height: 400px;
-		background-color: white;
+		position: fixed;
+		display: inline-block;
+		right: 5px;
+		width: 34%;
 	}
 	/*脚部*/
 	.footer{
-		height: 3.75rem;
-		line-height: 3.75rem;
+		height: 3rem;
+		font-size: 0.8rem;
+		line-height: 3rem;
 		background-color: black;
 		color: white;
 		text-align: center;

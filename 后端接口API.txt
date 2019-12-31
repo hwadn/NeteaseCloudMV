@@ -13,3 +13,4 @@ API接口
 成功：username——用户名
 失败：401，No Login——未登录
 4、登出：/logout
+响应：{"code":1}cookie清除成功

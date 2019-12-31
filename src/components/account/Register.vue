@@ -136,9 +136,13 @@
 							}
 						})
 					},errmsg=>{
+						// 再次编辑
+						this.registering = false;
 						that.verify.msg = errmsg;
 					});
 				}else{
+					// 再次编辑
+					this.registering = false;
 					window.alert('请输入完整');
 				}
 			}

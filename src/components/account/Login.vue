@@ -125,9 +125,14 @@
 							}
 						});
 					},errmsg=>{
+						// 验证码错误
 						that.verify.msg = errmsg;
+						// 再次编辑
+						this.registering = false;
 					});
 				}else{
+					// 禁止再次提交
+					this.registering = false;
 					window.alert('请输入完整');
 				}
 			},
