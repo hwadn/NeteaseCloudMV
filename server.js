@@ -69,7 +69,7 @@ var bodyParser = require('body-parser');
 var multer = require('multer'); // v1.0.5
 var upload = multer(); // for parsing multipart/form-data
 // 接口函数
-const apiFn = require('./mysql.js');
+const mysqlApi = require('./mysql.js');
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -98,7 +98,7 @@ app.use(cookieParser())
 // 注册
 app.post('/myregister', upload.array(), function(req, res){
 	let body = req.body;
-	apiFn.register(req.body).then(value=>{
+	mysqlApi.register(req.body).then(value=>{
 		let result = JSON.parse(value);
 		// 注册成功，自动登录
 		if(result.code == 1){
@@ -113,7 +113,7 @@ app.post('/myregister', upload.array(), function(req, res){
 // 登录
 app.post('/mylogin', upload.array(), function(req, res){
 	let username = req.body.username;
-	apiFn.login(req.body.username).then(value=>{
+	mysqlApi.login(req.body.username).then(value=>{
 		// 用户不存在
 		if(value == 'nothing'){
 			// 用户不存在，拒绝登录，-1表示
@@ -149,4 +149,61 @@ app.post('/logout', function(req, res){
 	// 清除cookie
 	res.set('Set-Cookie', `token=${token};Max-Age=-1;HttpOnly`);
 	res.send('{"code":1}');
+});
+
+// 留言接口
+// 发表评论
+app.post('/record/add', upload.array(), function(req, res){
+	let username = req.body.username;
+	let comment = req.body.comment;
+	// 时间计算
+	let now = new Date();
+	let year = now.getFullYear();
+	let month = now.getMonth()+1;
+	let date = now.getDate();
+	let hours = now.getHours();
+	if(hours<10)hours = '0' + hours;
+	let minutes = now.getMinutes();
+	if(minutes<10)minutes = '0' + minutes;
+	let sqlTime = `${year}/${month}/${date}/${hours}/${minutes}`;
+	// id = 用户名+时间戳
+	let id = username + Date.now();
+	// 加入数据库
+	mysqlApi.add(id, username, comment, sqlTime).then(value=>{
+		// 发表成功
+		if(value == 1){
+			res.send('{"code":1}');
+		}else{
+			// 数据库错误
+			res.send('{"code":-1}');
+		}
+	});
+});
+// 读取
+app.get('/record/read', function(req, res){
+	// 读取评论
+	mysqlApi.search().then(value=>{
+		// 读取失败
+		if(value == -1){
+			res.send('{"code": -1}');
+		}else{
+			// 读取成功
+			let response = JSON.stringify(value);
+			res.send(response);
+		}
+	});
+});
+// 删除
+app.post('/record/remove', upload.array(), function(req, res){
+	let id = req.body.id;
+	// 加入数据库
+	mysqlApi.deleteComent(id).then(value=>{
+		// 删除成功
+		if(value == 1){
+			res.send('{"code":1}');
+		}else{
+			// 数据库错误
+			res.send('{"code":-1}');
+		}
+	});
 });

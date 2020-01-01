@@ -5,7 +5,7 @@
 			<router-link to="all">全部</router-link>
 			<router-link to="board">排行</router-link>
 			<router-link to="new">最新</router-link>
-			<router-link to="record">留言</router-link>
+			<router-link to="comment">留言</router-link>
 			<router-link to="links">GitHub</router-link>
 		</div>
 		<router-view class="show"></router-view>

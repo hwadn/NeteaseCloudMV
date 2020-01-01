@@ -38,5 +38,44 @@ function login(username){
 		});
 	});
 }
-
-module.exports = {register, login};
+// 留言评论表操作
+// 查看所有
+function search(){
+	return new Promise((resolve,reject)=>{
+		connection.query(`select * from comments`, function (error, results, fields) {
+			if(!results) resolve(-1);
+			resolve(results);
+		});
+	});
+}
+// 增加评论
+function add(id, username, comment, time){
+	return new Promise((resolve,reject)=>{
+		connection.query(`insert comments values("${id}","${username}", "${comment}", "${time}")`, function (error, results, fields) {
+			if(!results) resolve(-1);
+			if(results.affectedRows == 1){
+				// 操作成功
+				resolve(1);
+			}else{
+				// 数据库错误
+				resolve(-1);
+			}
+		});
+	});
+}
+// 删除评论
+function deleteComent(id){
+	return new Promise((resolve,reject)=>{
+		connection.query(`delete from comments where id="${id}"`, function (error, results, fields) {
+			if(!results) resolve(-1);
+			if(results.affectedRows == 1){
+				// 操作成功
+				resolve(1);
+			}else{
+				// 数据库错误
+				resolve(-1);
+			}
+		});
+	});
+}
+module.exports = {register, login, add, search, deleteComent};

@@ -45,8 +45,8 @@
 	}
 	/*头部*/
 	.head{
-		height: 3.75rem;
-		line-height: 3.75rem;
+		height: 3.5rem;
+		line-height: 3.5rem;
 		text-align: center;
 		background-color: rgb(34,34,34);
 		color: white;
@@ -83,9 +83,9 @@
 	}
 	/*脚部*/
 	.footer{
-		height: 3rem;
+		height: 2.8rem;
 		font-size: 0.8rem;
-		line-height: 3rem;
+		line-height: 2.8rem;
 		background-color: black;
 		color: white;
 		text-align: center;

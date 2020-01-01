@@ -101,7 +101,6 @@
 				if(this.userName.isOk && this.password.isOk){
 					// 等着验证码校验成功
 					this.$refs.verifyCode.verify().then(res=>{
-						/////////////////////////////////
 						// 这里做表单提交，登录
 						myAjax.post('/mylogin',{'Content-type': 'application/x-www-form-urlencoded'},`username=${this.userName.inputValue}&password=${this.password.inputValue}`).then((value)=>{
 							// 响应成功

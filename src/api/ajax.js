@@ -35,7 +35,6 @@ function post(url, header, body){
 				xhr.setRequestHeader(key, header[key]);
 			});
 		}
-		
 		// 发送主体
 		body ? xhr.send(body) : xhr.send(null);
 	});
