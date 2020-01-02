@@ -152,8 +152,11 @@ app.post('/logout', function(req, res){
 });
 
 // 留言接口
+// 读取静态资源
+app.use(express.static('dist'));
 // 发表评论
 app.post('/record/add', upload.array(), function(req, res){
+	// referer验证
 	let username = req.body.username;
 	let comment = req.body.comment;
 	// 时间计算
@@ -179,20 +182,6 @@ app.post('/record/add', upload.array(), function(req, res){
 		}
 	});
 });
-// 读取
-app.get('/record/read', function(req, res){
-	// 读取评论
-	mysqlApi.search().then(value=>{
-		// 读取失败
-		if(value == -1){
-			res.send('{"code": -1}');
-		}else{
-			// 读取成功
-			let response = JSON.stringify(value);
-			res.send(response);
-		}
-	});
-});
 // 删除
 app.post('/record/remove', upload.array(), function(req, res){
 	let id = req.body.id;
@@ -206,4 +195,15 @@ app.post('/record/remove', upload.array(), function(req, res){
 			res.send('{"code":-1}');
 		}
 	});
+});
+// 请求拦截。防止csrf
+app.all('/*', function(req, res, next){
+	let reqUrl = req.get("Referer");
+	let selfUrl = "http://localhost:3000";
+	// 跨域请求不允许
+	if(reqUrl==undefined || reqUrl.indexOf(selfUrl) != 0){
+		res.status(403).send('Forbidden');
+	}else{
+		next();
+	}
 });

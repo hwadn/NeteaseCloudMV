@@ -5,8 +5,8 @@
 	</div>
 </template>
 <script>
-	import myAjax from '../../api/ajax.js'
-	import urls from '../../api/urls.js'
+	import myAjax from '../../functions/ajax.js'
+	import urls from '../../functions/urls.js'
 	export default{
 		data: ()=>{
 			return {

@@ -20,17 +20,12 @@
 	import MV from './components/MV.vue'
 	import Chat from './components/Chat.vue'
 	export default {
-		data:()=>{
-			return {
-
-			}
-		},
 		components:{
 			Weather,
 			AccountInfo,
 			MV,
 			Chat
-		}
+		},
 	};
 </script>
 <style>

@@ -8,16 +8,24 @@
 			<div class="username">{{this.$root.$data.username}}</div>
 			<div class="logout" @click="logout">登出</div>
 		</div>
-		<Login v-show="showLogin" @close="showLogin=false" @toregister="showRegister=true;showLogin=false"></Login>
-		<Register v-show="showRegister" @close="showRegister=false"></Register>
+		<keep-alive>
+			<transition name="move">
+				<Login v-show="showLogin" @close="showLogin=false" @toregister="showRegister=true;showLogin=false"></Login>
+			</transition>
+		</keep-alive>
+		<keep-alive>
+			<transition name="move">
+				<Register v-show="showRegister" @close="showRegister=false"></Register>
+			</transition>
+		</keep-alive>
 	</div>
 </template>
 <script>
 	import Login from './Login.vue'
 	import Register from './Register.vue'
-	import myAjax from '../../api/ajax.js'
-	import urls from '../../api/urls.js'
-	import eventBus from '../../api/eventBus.js'
+	import myAjax from '../../functions/ajax.js'
+	import urls from '../../functions/urls.js'
+	import eventBus from '../../functions/eventBus.js'
 	export default {
 		components: {
 			Login,
@@ -59,14 +67,16 @@
 	}
 </script>
 <style scoped>
+	.move-enter{
+		left: 50%;
+		transform: translateX(-50%) translateY(-120%);
+	}
+	.move-enter-active{
+		transition: transform 0.5s ease-out, left 0.5s ease-out;
+	}
 	.account-info{
 		display: inline-block;
 		vertical-align: middle;
-	}
-	.account-info{
-
-	}
-	.account-info .buttons{
 	}
 	.account-info .btn{
 		text-decoration: underline;

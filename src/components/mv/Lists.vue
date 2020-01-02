@@ -18,14 +18,14 @@
 </template>
 <script>
 	import Cover from './Cover.vue'
-	import MyAjax from '../../api/ajax.js'
-	import urls from '../../api/urls.js'
-	import deepCopy from '../../api/deepCopy.js'
-	import ms2Time from '../../api/ms2Time.js'
-	import {throttle, debounce} from '../../api/debounce.js'
+	import MyAjax from '../../functions/ajax.js'
+	import urls from '../../functions/urls.js'
+	import deepCopy from '../../functions/deepCopy.js'
+	import ms2Time from '../../functions/ms2Time.js'
+	import {throttle, debounce} from '../../functions/debounce.js'
 	import Vue from 'vue'
-	import artists2Str from '../../api/artists2str.js'
-	import eventBus from '../../api/eventBus.js'
+	import artists2Str from '../../functions/artists2str.js'
+	import eventBus from '../../functions/eventBus.js'
 
 	export default {
 		components: {

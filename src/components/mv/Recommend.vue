@@ -20,11 +20,11 @@
 	</div>
 </template>
 <script>
-	import myAjax from '../../api/ajax.js'
-	import deepCopy from '../../api/deepCopy.js'
+	import myAjax from '../../functions/ajax.js'
+	import deepCopy from '../../functions/deepCopy.js'
 	import Vue from 'vue'
-	import urls from '../../api/urls.js'
-	import eventBus from '../../api/eventBus.js'
+	import urls from '../../functions/urls.js'
+	import eventBus from '../../functions/eventBus.js'
 
 	export default{
 		data: ()=>{

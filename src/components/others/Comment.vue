@@ -26,8 +26,8 @@
 	</div>
 </template>
 <script>
-	import myAjax from '../../api/ajax.js'
-	import eventBus from '../../api/eventBus.js'
+	import myAjax from '../../functions/ajax.js'
+	import eventBus from '../../functions/eventBus.js'
 	export default {
 		data: ()=>{
 			return {
@@ -45,14 +45,12 @@
 		},
 		mounted(){
 			this.read();
-			// this.currentUsername = this.$root.$data.username;
-			// console.log(this.currentUsername);
 		},
 		methods: {
 			// 读取留言
 			read(){
 				// 请求评论数据
-				myAjax.get('/record/read').then((value)=>{
+				myAjax.get('/comments.json').then((value)=>{
 					let responseObj = JSON.parse(value);
 					this.records = responseObj;
 				});

@@ -6,7 +6,7 @@
 	</div>
 </template>
 <script>
-	import weatherMsg from '../api/getWeather.js'
+	import weatherMsg from '../functions/getWeather.js'
 	export default{
 		data: ()=>{
 			return {

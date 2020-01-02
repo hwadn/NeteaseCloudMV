@@ -36,8 +36,10 @@ module.exports = {
 		contentBase: './dist', // 默认output.path
 		// publicPath: '/' // 默认output.publicPath
 		// hot: true,
+		compress: true, // gzip压缩
 		overlay: true,
-		host:'0.0.0.0'
+		host:'0.0.0.0',
+		historyApiFallback: true,
 	},
 	resolve: {
 		// 路径映射。需要编译器

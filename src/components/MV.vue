@@ -8,7 +8,10 @@
 			<router-link to="comment">留言</router-link>
 			<router-link to="links">GitHub</router-link>
 		</div>
-		<router-view class="show"></router-view>
+		<!-- 缓存之前状态 -->
+		<keep-alive>
+			<router-view class="show"></router-view>
+		</keep-alive>
 	</div>
 </template>
 <script>
@@ -24,7 +27,7 @@
 	/*屏幕尺寸适应*/
 	@media (max-width: 800px) {
 		.video-play{
-			width: 70% !important;
+			width: 65% !important;
 			left: 0 !important;
 		}
 	}

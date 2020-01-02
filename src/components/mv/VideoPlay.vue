@@ -1,19 +1,21 @@
 <template>
-	<div class="video-play" v-show="isShow">
-		<video id="video" :src="currentUrl" :poster="currentPoster" controls preload autoplay controlslist="nodownload"></video>
-		<span class="state" v-show="!canplay && currentUrl">{{error}}</span>
-		<Cross :class="{white: true}" @click.native="close"></Cross>
-		<div class="zoom">
-			<span @click="amplify">+</span> 缩放 <span @click="reduce">-</span>
+	<transition name="fade">
+		<div class="video-play" v-show="isShow">
+			<video id="video" :src="currentUrl" :poster="currentPoster" controls preload autoplay controlslist="nodownload"></video>
+			<span class="state" v-show="!canplay && currentUrl">{{error}}</span>
+			<Cross :class="{white: true}" @click.native="close"></Cross>
+			<div class="zoom">
+				<span @click="amplify">+</span> 缩放 <span @click="reduce">-</span>
+			</div>
 		</div>
-	</div>
+	</transition>
 </template>
 <script>
 	import Cross from '../multiplex/Cross.vue'
-	import eventBus from '../../api/eventBus.js'
-	import urls from '../../api/urls.js'
-	import myAjax from '../../api/ajax.js'
-	import dragMove from '../../api/dragMove.js'
+	import eventBus from '../../functions/eventBus.js'
+	import urls from '../../functions/urls.js'
+	import myAjax from '../../functions/ajax.js'
+	import dragMove from '../../functions/dragMove.js'
 
 	export default {
 		data: ()=>{
@@ -103,6 +105,12 @@
 	}
 </script>
 <style scoped>
+	.fade-enter{
+		opacity: 0;
+	}
+	.fade-enter-active{
+		transition: opacity 1s;
+	}
 	.video-play{
 		font-size: 0;
 		padding-top: 1.5rem;

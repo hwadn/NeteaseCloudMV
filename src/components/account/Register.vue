@@ -26,8 +26,8 @@
 <script>
 	import Cross from '../multiplex/Cross.vue'
 	import IdentifyCode from './IdentifyCode.vue'
-	import test from '../../api/Test.js'
-	import myAjax from '../../api/ajax.js'
+	import test from '../../functions/test.js'
+	import myAjax from '../../functions/ajax.js'
 	import router from '../../router.js'
 	
 	export default {
@@ -134,7 +134,11 @@
 							}else{
 								console.log('错误');
 							}
-						})
+						}, err=>{
+							// 禁止再次提交
+							this.registering = false;
+							alert("注册失败!");
+						});
 					},errmsg=>{
 						// 再次编辑
 						this.registering = false;

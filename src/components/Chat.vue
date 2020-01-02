@@ -21,8 +21,8 @@
 	</div>
 </template>
 <script>
-	import urls from '../api/urls.js'
-	import eventBus from '../api/eventBus.js'
+	import urls from '../functions/urls.js'
+	import eventBus from '../functions/eventBus.js'
 	export default {
 		data: ()=>{
 			return {
@@ -57,7 +57,7 @@
 		mounted(){
 			let that = this;
 			// 页面卸载
-			window.onbeforeunload = function(){
+			window.onbeforeunload = function(e){
 				// 关闭连接
 				that.socket.close();
 			}

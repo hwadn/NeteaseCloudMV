@@ -39,13 +39,23 @@ function login(username){
 	});
 }
 // 留言评论表操作
-// 查看所有
-function search(){
-	return new Promise((resolve,reject)=>{
-		connection.query(`select * from comments`, function (error, results, fields) {
-			if(!results) resolve(-1);
-			resolve(results);
-		});
+// 写入json
+function writeJSONWithObj(jsonPath, obj){
+	let fs = require('fs');
+	let json = JSON.stringify(obj, null, 4);
+	fs.writeFile(jsonPath, json, function(err, fd){
+		if(err){
+			console.log('更新json失败');
+		}
+	});
+}
+// 更新评论
+function upDateJSON(jsonPath){
+	connection.query(`select * from comments`, function (error, results, fields) {
+		if(!results) {
+			writeJSONWithObj
+		}
+		writeJSONWithObj(jsonPath, results);
 	});
 }
 // 增加评论
@@ -55,6 +65,8 @@ function add(id, username, comment, time){
 			if(!results) resolve(-1);
 			if(results.affectedRows == 1){
 				// 操作成功
+				// 更新json
+				upDateJSON('./dist/comments.json');
 				resolve(1);
 			}else{
 				// 数据库错误
@@ -70,6 +82,8 @@ function deleteComent(id){
 			if(!results) resolve(-1);
 			if(results.affectedRows == 1){
 				// 操作成功
+				// 更新json
+				upDateJSON('./dist/comments.json');
 				resolve(1);
 			}else{
 				// 数据库错误
@@ -78,4 +92,4 @@ function deleteComent(id){
 		});
 	});
 }
-module.exports = {register, login, add, search, deleteComent};
+module.exports = {register, login, add, deleteComent};

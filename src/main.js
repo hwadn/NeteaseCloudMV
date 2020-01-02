@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router.js'
-import {debounce, throttle} from './api/debounce.js'
+import {debounce, throttle} from './functions/debounce.js'
 
 // 自定义指令
 // 防抖
@@ -22,6 +22,7 @@ Vue.directive('throttle',{
 		el.addEventListener(event, throttle(fn, 200));
 	}
 });
+
 
 new Vue({
 	router,
