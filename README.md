@@ -36,6 +36,7 @@ npm run build
 ### 1、第三方开放接口——小白开放API
 - IP城市接口
 - 天气接口
+- 图形验证码接口
 
 注意：需要去小白网站注册会员才能使用，具体接口使用参考小白官网。
 ### 2、网易云音乐API——github白嫖
@@ -56,26 +57,26 @@ npm run build
 {"code":1}——登录成功。cookie设置为1天。HttpOnly。
 {"code":1}——密码错误
 
-#### (3)cookie登录接口：/isLogin
+#### (3)cookie登录接口：/myisLogin
 - post请求:自动携带cookie，无需携带任何内容。
 - 响应：
 成功：username——用户名
 失败：401，No Login——未登录
 
-#### (4)登出接口：/logout
+#### (4)登出接口：/mylogout
 - post请求:自动携带cookie，无需携带任何内容。
 - 响应：{"code":1}cookie清除成功
 
 #### (5)静态留言文件接口：/comments.json
 - get请求
 
-#### (6)发表留言接口：/record/add
+#### (6)发表留言接口：/myrecord/add
 - post请求：body="username=xxx&comment=xxx"
 - 响应：  
 {"code":1}——成功
 {"code":-1}——失败、数据库错误
 
-#### (7)删除评论接口：/record/remove
+#### (7)删除留言接口：/myrecord/remove
 - post请求：body="id"
 - 响应：  
 {"code":1}——删除成功
@@ -86,13 +87,13 @@ npm run build
 - media媒体查询调整字体、显示适应、高度适应
 - 字体使用rem、em相对字体
 ### 2、性能优化
-- 静态文件添加缓存头ETag——express自动添加
+- 静态文件添加缓存头ETag——express自动实现
 - DNS预解析——link标签中 rel="dns-prefetch"强制预解析
-- webpack压缩,gzip
+- webpack压缩,source map
 - mv封面图片懒加载：占位图避免回流、事件代理、滚动事件节流
 - 按键防抖、拖动事件节流
 ### 3、安全
 - 聊天室、留言板防御XSS——Vue自动转义、cookie设置HttpOnly
-- 防御CSRF——cookie设置HttpOnly、后端校验Referer是否同源
+- 防御CSRF——cookie设置HttpOnly，后端校验Referer是否同源（后端暂未实现)
 ### 4、SEO
 - Vue-router用history模式
