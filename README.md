@@ -93,7 +93,7 @@ npm run build
 - mv封面图片懒加载：占位图避免回流、事件代理、滚动事件节流
 - 按键防抖、拖动事件节流
 ### 3、安全
-- 聊天室、留言板防御XSS——Vue自动转义、cookie设置HttpOnly
+- 聊天室、留言板防御XSS——createTextNode()转义标签、cookie设置HttpOnly
 - 防御CSRF——cookie设置HttpOnly，后端校验Referer是否同源（后端暂未实现)
 ### 4、SEO
 - Vue-router用history模式
