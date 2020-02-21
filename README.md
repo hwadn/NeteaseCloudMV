@@ -88,7 +88,7 @@ npm run build
 - 字体使用rem、em相对字体
 ### 2、性能优化
 - 静态文件添加缓存头ETag——express自动实现
-- DNS预解析——link标签中 rel="dns-prefetch"强制预解析
+- DNS预解析——link标签中 rel="dns-prefetch"强制预解析。让解析好的ip地址缓存在浏览器中，当用户点击链接时，就不需要再次解析。
 - webpack压缩,source map
 - mv封面图片懒加载：占位图避免回流、事件代理、滚动事件节流
 - 按键防抖、拖动事件节流
